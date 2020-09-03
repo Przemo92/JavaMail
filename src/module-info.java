@@ -4,5 +4,7 @@ module java.mail {
     requires javafx.graphics;
     requires javafx.web;
 
-    opens first;
+    opens barosanu;
+    opens barosanu.view;
+
 }
