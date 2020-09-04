@@ -5,8 +5,8 @@ import barosanu.view.ViewFactory;
 
 public abstract class BaseCotroller {
 
-    private EmailMenager emailMenager;
-    private ViewFactory viewFactory;
+    protected EmailMenager emailMenager;
+    protected ViewFactory viewFactory;
     private String fxmlName;
 
     public BaseCotroller(EmailMenager emailMenager, ViewFactory viewFactory, String fxmlName) {

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginWindowController extends BaseCotroller {
 
@@ -24,6 +25,11 @@ public class LoginWindowController extends BaseCotroller {
 
     @FXML
     void loginButtonAction() {
-        System.out.println("cliK!!");
+        System.out.println("login Button cliK!!");
+        viewFactory.showMainWindow();
+        Stage stage = (Stage) errorLabel.getScene().getWindow();
+        viewFactory.closeStage(stage);
+
+
     }
 }
