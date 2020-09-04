@@ -6,5 +6,5 @@ module java.mail {
 
     opens barosanu;
     opens barosanu.view;
-
+    opens barosanu.controller;
 }
