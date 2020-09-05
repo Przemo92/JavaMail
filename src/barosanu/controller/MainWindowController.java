@@ -18,6 +18,7 @@ public class MainWindowController extends BaseCotroller {
     @FXML
     private WebView emailWebView;
 
+
     public MainWindowController(EmailMenager emailMenager, ViewFactory viewFactory, String fxmlName) {
         super(emailMenager, viewFactory, fxmlName);
     }
@@ -25,6 +26,12 @@ public class MainWindowController extends BaseCotroller {
     @FXML
     void optionsAction() {
         viewFactory.showOptionsWindow();
+    }
+
+    @FXML
+    void addAccountAction() {
+
+        viewFactory.showLoginWindow();
     }
 
 }
