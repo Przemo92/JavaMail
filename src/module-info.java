@@ -9,4 +9,5 @@ module java.maill {
     opens barosanu;
     opens barosanu.view;
     opens barosanu.controller;
+    opens barosanu.model;
 }
