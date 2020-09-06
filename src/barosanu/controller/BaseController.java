@@ -3,13 +3,13 @@ package barosanu.controller;
 import barosanu.EmailMenager;
 import barosanu.view.ViewFactory;
 
-public abstract class BaseCotroller {
+public abstract class BaseController {
 
     protected EmailMenager emailMenager;
     protected ViewFactory viewFactory;
     private String fxmlName;
 
-    public BaseCotroller(EmailMenager emailMenager, ViewFactory viewFactory, String fxmlName) {
+    public BaseController(EmailMenager emailMenager, ViewFactory viewFactory, String fxmlName) {
         this.emailMenager = emailMenager;
         this.viewFactory = viewFactory;
         this.fxmlName = fxmlName;

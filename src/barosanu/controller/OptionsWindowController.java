@@ -1,7 +1,6 @@
 package barosanu.controller;
 
 import barosanu.EmailMenager;
-import barosanu.controller.BaseCotroller;
 import barosanu.view.ColorTheme;
 import barosanu.view.FontSize;
 import barosanu.view.ViewFactory;
@@ -16,7 +15,7 @@ import javafx.util.StringConverter;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class OptionsWindowController extends BaseCotroller implements Initializable {
+public class OptionsWindowController extends BaseController implements Initializable {
 
     public OptionsWindowController(EmailMenager emailMenager, ViewFactory viewFactory, String fxmlName) {
         super(emailMenager, viewFactory, fxmlName);

@@ -3,12 +3,12 @@ package barosanu.controller.services;
 import barosanu.EmailMenager;
 import barosanu.controller.EmailLoginResult;
 import barosanu.model.EmailAccount;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 
 import javax.mail.*;
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
 
-public class LoginService {
+public class LoginService extends Service<EmailLoginResult> {
 
     EmailAccount emailAccount;
     EmailMenager emailMenager;
@@ -18,11 +18,12 @@ public class LoginService {
         this.emailMenager = emailMenager;
     }
 
-    public EmailLoginResult login(){
+    private EmailLoginResult login(){
+
 
         Authenticator authenticator = new Authenticator() {
             @Override
-            protected PasswordAuthentication getPasswordAuthentication(){
+            protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(emailAccount.getAddress(), emailAccount.getPassword());
             }
         };
@@ -34,20 +35,31 @@ public class LoginService {
                     emailAccount.getAddress(),
                     emailAccount.getPassword());
             emailAccount.setStore(store);
+            emailMenager.addEmailAccount(emailAccount);
 
         }catch (NoSuchProviderException e){
             e.printStackTrace();
             return EmailLoginResult.FAILED_BY_NETWORK;
-        }catch (MessagingException e){
-            e.printStackTrace();
-            return EmailLoginResult.FAILED_BY_UNEXPECTED_ERROR;
-        }catch (AuthenticationFailedException e){
+        } catch (AuthenticationFailedException e){
             e.printStackTrace();
             return EmailLoginResult.FAILED_BY_CREDENTIALS;
-        }catch (Exception e){
+        } catch (MessagingException e){
+            e.printStackTrace();
+            return EmailLoginResult.FAILED_BY_UNEXPECTED_ERROR;
+        } catch (Exception e){
             e.printStackTrace();
             return EmailLoginResult.FAILED_BY_UNEXPECTED_ERROR;
         }
         return EmailLoginResult.SUCCESS;
+    }
+
+    @Override
+    protected Task<EmailLoginResult> createTask() {
+        return new Task<EmailLoginResult>() {
+            @Override
+            protected EmailLoginResult call() throws Exception {
+                return login();
+            }
+        };
     }
 }
