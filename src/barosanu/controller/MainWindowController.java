@@ -76,7 +76,7 @@ public class MainWindowController extends BaseController implements Initializabl
 
     private void setUpMessageSelection() {
 
-        emailTableView.setOnMouseClicked(e-> {
+        emailTableView.setOnMouseClicked(e -> {
             EmailMessage emailMessage = emailTableView.getSelectionModel().getSelectedItem();
             if(emailMessage != null){
                 messageRendererService.setEmailMessage(emailMessage);
