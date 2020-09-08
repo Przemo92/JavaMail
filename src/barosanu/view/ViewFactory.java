@@ -1,10 +1,7 @@
 package barosanu.view;
 
 import barosanu.EmailMenager;
-import barosanu.controller.BaseController;
-import barosanu.controller.LoginWindowController;
-import barosanu.controller.MainWindowController;
-import barosanu.controller.OptionsWindowController;
+import barosanu.controller.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -49,6 +46,12 @@ public class ViewFactory {
         System.out.println("options window called");
 
         BaseController controller = new OptionsWindowController(emailMenager, this, "OptionsWindow.fxml");
+        initializeStage(controller);
+    }
+    public void showComposeMessageWindow(){
+        System.out.println("comopse message window called");
+
+        BaseController controller = new ComposeMessageController(emailMenager, this, "ComposeMessageWindow.fxml");
         initializeStage(controller);
     }
 
