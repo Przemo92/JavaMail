@@ -1,6 +1,7 @@
 package barosanu.controller.services;
 
 import barosanu.model.EmailTreeItem;
+import barosanu.view.IconResolver;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 
@@ -18,6 +19,7 @@ public class FetchFolderService extends Service<Void> {
     private Store store;
     private EmailTreeItem<String> foldersRoot;
     private List<Folder> folderList;
+    private IconResolver iconResolver = new IconResolver();
 
     public FetchFolderService(Store store, EmailTreeItem<String> foldersRoot, List<Folder> folderList) {
         this.store = store;
@@ -45,6 +47,7 @@ public class FetchFolderService extends Service<Void> {
         for(Folder folder: folders){
             folderList.add(folder);
             EmailTreeItem<String> emailTreeItem = new EmailTreeItem<String>(folder.getName());
+            emailTreeItem.setGraphic(iconResolver.getIconForFolder(folder.getName()));
             foldersRoot.getChildren().add((emailTreeItem));
             foldersRoot.setExpanded(true);
             fetchMessagesOnFolder(folder, emailTreeItem);
